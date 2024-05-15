@@ -309,7 +309,6 @@ button:hover {
 	display: flex;
 	justify-content: center;
 	gap: 5px;
-	margin-bottom: 15px;
 	margin-top: 0;
 }
 
