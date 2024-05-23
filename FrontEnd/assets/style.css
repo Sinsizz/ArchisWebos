@@ -300,6 +300,31 @@ button {
 	margin-top: 0px;
 }
 
+.log {
+	display: flex;
+	justify-content: center;
+	margin-top: 37px;
+
+}
+
+#button2 {
+	font-family: 'Syne';
+	font-weight: 700;
+	color: white;
+	background-color: #1D6154;
+	margin: 2em auto;
+	text-align: center;
+	border-radius: 60px;
+	margin-left: 0;
+	margin-right: 0;
+	padding: 10px 38px;
+	border: 1px solid #1D6154;
+	margin-top: 0px;
+	justify-content: center;
+	font-size: 17px;
+}
+
+
 button:hover {
 	color: white;
 	background-color: #1D6154;
@@ -313,13 +338,22 @@ button:hover {
 	margin-top: 0;
 }
 
-
-
-
-
-
 footer nav ul {
 	display: flex;
 	justify-content: flex-end;
 	margin: 2em
+}
+
+#user h2 {
+	text-align: center;
+	margin-bottom: 1em;
+}
+
+.mdp {
+	color: black;
+}
+
+.forget {
+	display: flex;
+	justify-content: center;
 }
