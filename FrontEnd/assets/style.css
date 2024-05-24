@@ -347,10 +347,20 @@ footer nav ul {
 #user h2 {
 	text-align: center;
 	margin-bottom: 1em;
+	margin-top: 150px;
 }
 
 .mdp {
 	color: black;
+	margin-bottom: 180px;
+}
+
+nav ul li a {
+	text-decoration: none;
+}
+
+nav ul li a:hover {
+	color: #B1663C;
 }
 
 .forget {
