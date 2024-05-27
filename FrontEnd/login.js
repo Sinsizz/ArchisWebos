@@ -30,7 +30,7 @@ function login() {
             // Sauvegarder le token dans le local storage
             saveTokenToLocalStorage(data.token);
             // Rediriger vers la page "accueil.html" après une connexion réussie
-            window.location.href = 'accueil.html';
+            window.location.href = 'index.html';
         })
         .catch(error => {
             // Gérer les erreurs lors de la connexion
