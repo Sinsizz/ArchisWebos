@@ -28,6 +28,11 @@ async function afficherphotos() {
     // Ajouter les boutons des catégories juste au-dessus de la galerie
     gallery.insertAdjacentElement('beforebegin', categoriesContainer);
 
+    // Masquer les boutons de catégorie si l'utilisateur est connecté
+    if (isLoggedIn()) {
+        hideCategoryButtons();
+    }
+
     // Fonction pour filtrer les photos par catégorie
     function filtrerPhotosParCategorie(categoryId) {
         // Filtrer les photos qui appartiennent à la catégorie sélectionnée
@@ -53,14 +58,9 @@ async function afficherphotos() {
         });
     }
 
-
     // Afficher toutes les photos par défaut
     filtrerPhotosParCategorie(null);
 }
 
 // Appeler la fonction pour afficher les photos et les catégories
 afficherphotos();
-
-
-
-

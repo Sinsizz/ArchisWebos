@@ -20,8 +20,9 @@ function login() {
         body: JSON.stringify(credentials)
     })
         .then(response => {
-            // Vérifier si la réponse est OK (200)
             if (!response.ok) {
+                // Afficher un message d'erreur à l'utilisateur
+                showError('Erreur lors de la connexion. Veuillez vérifier vos identifiants.');
                 throw new Error('Erreur lors de la connexion');
             }
             return response.json(); // Convertir la réponse en JSON
@@ -29,7 +30,7 @@ function login() {
         .then(data => {
             // Sauvegarder le token dans le local storage
             saveTokenToLocalStorage(data.token);
-            // Rediriger vers la page "accueil.html" après une connexion réussie
+            // Rediriger vers la page "index.html" après une connexion réussie
             window.location.href = 'index.html';
         })
         .catch(error => {
@@ -47,4 +48,26 @@ function saveTokenToLocalStorage(token) {
 function getTokenFromLocalStorage() {
     return localStorage.getItem('token');
 }
+
+// Fonction pour afficher les messages d'erreur
+function showError(message) {
+    // Créer un élément pour afficher le message d'erreur
+    const errorDiv = document.createElement('div');
+    errorDiv.className = 'error-message';
+    errorDiv.textContent = message;
+
+    // Ajouter le message d'erreur au formulaire
+    const form = document.querySelector('form');
+    form.appendChild(errorDiv);
+
+    // Supprimer le message d'erreur après 5 secondes
+    setTimeout(() => {
+        errorDiv.remove();
+    }, 5000);
+}
+
+
+
+
+
 
