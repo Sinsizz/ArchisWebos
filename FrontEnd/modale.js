@@ -57,7 +57,7 @@ async function afficherPhotosModal() {
     const photos = await reponsePhotos.json();
 
     // Créer la galerie dans la modale
-    const gallery = document.querySelector('.modal-content .gallery');
+    const gallery = document.querySelector('.modal-content .gallery2');
 
     // Effacer le contenu existant de la galerie
     gallery.innerHTML = '';

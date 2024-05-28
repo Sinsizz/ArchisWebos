@@ -416,22 +416,27 @@ nav ul li a:hover {
 	height: 100%;
 	background-color: rgba(0, 0, 0, 0.5);
 	/* Arrière-plan semi-transparent */
+	overflow: auto;
+	/* Ajoute un défilement si le contenu de la modale est trop grand */
+	padding-top: 50px;
+	/* Espacement au-dessus de la modale pour le centrage vertical */
 }
 
 /* Contenu de la modale */
 .modal-content {
 	background-color: #fefefe;
-	margin: 15% auto;
-	/* Centre verticalement */
+	margin: auto;
+	/* Centre la modale horizontalement et verticalement */
 	padding: 20px;
 	border: 1px solid #888;
-	width: 500px;
+	width: 630px;
 	/* Largeur de la modale */
-	height: 500px;
+	height: 688px;
 	/* Hauteur de la modale */
 	border-radius: 10px;
 	/* Border radius */
 }
+
 
 
 /* Bouton pour fermer la modale */
@@ -440,6 +445,8 @@ nav ul li a:hover {
 	float: right;
 	font-size: 28px;
 	font-weight: bold;
+	margin-right: 10px;
+	margin-top: 6px;
 }
 
 .close:hover,
@@ -455,6 +462,10 @@ nav ul li a:hover {
 	/* Limiter la largeur des images à 100% de la largeur de la modale */
 	height: auto;
 	/* Hauteur automatique pour conserver les proportions */
+	margin-right: 9px;
+	/* Espacement horizontal entre les images */
+	margin-bottom: 20px;
+	/* Espacement vertical entre les images */
 }
 
 /* Paragraphe à l'intérieur de la modale */
@@ -463,5 +474,39 @@ nav ul li a:hover {
 	/* Centrer horizontalement */
 	font-size: 26px;
 	/* Taille de la police */
-	margin-top: 20px;
+	margin-top: 60px;
+	margin-bottom: 34px;
+}
+
+/* Style pour la galerie d'images */
+.modal-content .gallery2 {
+	display: flex;
+	/* Utiliser un conteneur flex pour aligner les éléments */
+	flex-wrap: wrap;
+	/* Permettre le retour à la ligne des éléments */
+	align-items: center;
+	/* Centrer les éléments verticalement */
+	padding-left: 102px;
+	/* Padding à gauche des images */
+	padding-right: 98px;
+	/* Padding à droite des images */
+}
+
+/* Style pour la ligne en dessous des images */
+.modal-content .ligne {
+	width: 430px;
+	/* Largeur de la ligne */
+	height: 1px;
+	/* Épaisseur de la ligne */
+	background-color: #B3B3B3;
+	/* Couleur de la ligne */
+	margin: 0 auto;
+	/* Centrer horizontalement la ligne */
+	border: 1px;
+	margin-top: 67px;
+}
+
+#ajouter-photo-btn {
+	display: block;
+	margin: 48px auto 0;
 }
