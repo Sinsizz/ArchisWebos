@@ -11,8 +11,10 @@
 		rel="stylesheet">
 	<meta name="description" content="">
 	<link rel="stylesheet" href="./assets/style.css">
+	<script src="https://kit.fontawesome.com/94f787f499.js" crossorigin="anonymous"></script>
 	<script src="./photos.js"></script>
-	<script src="logout.js"></script>
+	<script src="./logout.js"></script>
+	<script src="./modale.js"></script>
 </head>
 
 <body>
@@ -44,11 +46,23 @@
 			</article>
 		</section>
 		<section id="portfolio">
-			<h2>Mes Projets</h2>
-			<button id="modifier-button">modifier</button>
+			<div class="project">
+				<h2>Mes Projets</h2>
+				<div class="modifier-container">
+					<i id="modifier-icon" class="fa-regular fa-pen-to-square" style="display: none;"></i>
+					<button id="modifier-button" class="modifier-button" style="display:none;">modifier</button>
+				</div>
+			</div>
 			<div class="gallery">
 			</div>
 		</section>
+		<!-- Modale -->
+		<div id="modal" class="modal">
+			<div class="modal-content">
+				<span class="close">&times;</span>
+				<p>Galerie photo</p>
+			</div>
+		</div>
 		<section id="contact">
 			<h2>Contact</h2>
 			<p>Vous avez un projet ? Discutons-en !</p>

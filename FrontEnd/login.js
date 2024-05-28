@@ -60,10 +60,10 @@ function showError(message) {
     const form = document.querySelector('form');
     form.appendChild(errorDiv);
 
-    // Supprimer le message d'erreur après 5 secondes
+    // Supprimer le message d'erreur après 2 secondes
     setTimeout(() => {
         errorDiv.remove();
-    }, 5000);
+    }, 2000);
 }
 
 
