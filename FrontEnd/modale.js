@@ -50,6 +50,59 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
+// Fonction pour afficher les photos depuis l'API Works dans la modale
+async function afficherPhotosModal() {
+    // Récupérer les photos depuis l'API
+    const reponsePhotos = await fetch("http://localhost:5678/api/works");
+    const photos = await reponsePhotos.json();
+
+    // Créer la galerie dans la modale
+    const gallery = document.querySelector('.modal-content .gallery');
+
+    // Effacer le contenu existant de la galerie
+    gallery.innerHTML = '';
+
+    // Ajouter chaque photo à la galerie
+    photos.forEach(photo => {
+        const img = document.createElement('img');
+        img.src = photo.imageUrl; // Assurez-vous que votre API renvoie une URL pour chaque photo
+        img.alt = photo.title; // Assurez-vous que votre API renvoie un titre pour chaque photo
+        gallery.appendChild(img);
+    });
+}
+
+// Fonction pour ouvrir la modale si l'utilisateur est connecté
+function openModalIfLoggedIn() {
+    if (isLoggedIn()) {
+        document.getElementById('modal').style.display = 'block';
+        afficherPhotosModal(); // Afficher les photos lorsque la modale est ouverte
+    }
+}
+
+// Événement déclenché lorsque le DOM est chargé
+document.addEventListener('DOMContentLoaded', () => {
+    const modifierButton = document.getElementById('modifier-button');
+    const modifierIcon = document.getElementById('modifier-icon');
+    const closeButton = document.querySelector('.modal .close');
+
+    modifierButton.addEventListener('click', openModalIfLoggedIn);
+    modifierIcon.addEventListener('click', openModalIfLoggedIn);
+
+    closeButton.addEventListener('click', () => {
+        document.getElementById('modal').style.display = 'none';
+    });
+
+    window.addEventListener('click', (event) => {
+        if (event.target === document.getElementById('modal')) {
+            document.getElementById('modal').style.display = 'none';
+        }
+    });
+});
+
+
+
+
+
 
 
 

@@ -426,9 +426,13 @@ nav ul li a:hover {
 	padding: 20px;
 	border: 1px solid #888;
 	width: 500px;
-	height: 500px;
 	/* Largeur de la modale */
+	height: 500px;
+	/* Hauteur de la modale */
+	border-radius: 10px;
+	/* Border radius */
 }
+
 
 /* Bouton pour fermer la modale */
 .close {
@@ -443,4 +447,21 @@ nav ul li a:hover {
 	color: #000;
 	text-decoration: none;
 	cursor: pointer;
+}
+
+/* Style pour les images dans la modale */
+.modal-content img {
+	max-width: 77px;
+	/* Limiter la largeur des images à 100% de la largeur de la modale */
+	height: auto;
+	/* Hauteur automatique pour conserver les proportions */
+}
+
+/* Paragraphe à l'intérieur de la modale */
+.modal-content p {
+	text-align: center;
+	/* Centrer horizontalement */
+	font-size: 26px;
+	/* Taille de la police */
+	margin-top: 20px;
 }
