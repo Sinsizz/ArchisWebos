@@ -24,7 +24,7 @@ async function afficherPhotosModal() {
 
         // Positionner l'icône de la corbeille
         deleteIconContainer.style.position = 'absolute';
-        deleteIconContainer.style.top = '5px'; // Placer l'icône à 9 pixels du haut de l'image
+        deleteIconContainer.style.top = '3px'; // Placer l'icône à 9 pixels du haut de l'image
         deleteIconContainer.style.right = '12px'; // Placer l'icône à 9 pixels de la droite de l'image
         deleteIconContainer.style.width = '17px'; // Définir la largeur de l'encadrement noir
         deleteIconContainer.style.height = '17px'; // Définir la hauteur de l'encadrement noir
