@@ -515,3 +515,23 @@ nav ul li a:hover {
 	position: relative;
 	display: inline-block;
 }
+
+#modal2 {
+	z-index: 2;
+}
+
+.modal-content .close2 {
+	color: #aaaaaa;
+	float: left;
+	font-size: 20px;
+	font-weight: bold;
+	margin-right: 10px;
+	margin-top: 13px;
+}
+
+.close2:hover,
+.close2:focus {
+	color: #000;
+	text-decoration: none;
+	cursor: pointer;
+}

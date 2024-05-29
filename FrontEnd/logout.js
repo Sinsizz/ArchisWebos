@@ -17,8 +17,8 @@ function hideCategoryButtons() {
     }
 }
 
-// Mise à jour de la navigation et des boutons de catégorie en fonction de l'état de connexion
-document.addEventListener('DOMContentLoaded', () => {
+// Fonction pour mettre à jour la navigation en fonction de l'état de connexion de l'utilisateur
+function updateNavigation() {
     const loginLink = document.getElementById('login-link');
     if (isLoggedIn()) {
         // Si l'utilisateur est connecté, masquer les boutons de catégorie
@@ -29,7 +29,13 @@ document.addEventListener('DOMContentLoaded', () => {
         // Mettre à jour le lien de connexion pour afficher "login"
         loginLink.innerHTML = '<a href="./login.html">login</a>';
     }
+}
+
+// Mise à jour de la navigation lorsque la page est chargée
+document.addEventListener('DOMContentLoaded', () => {
+    updateNavigation();
 });
+
 
 
 
