@@ -17,6 +17,7 @@
 	<script src="./modale.js"></script>
 	<script src="./delete.js"></script>
 	<script src="./modal2.js"></script>
+	<script src="./upload.js"></script>
 </head>
 
 <body>
@@ -73,9 +74,27 @@
 			<div class="modal-content">
 				<span class="close">&times;</span>
 				<span class="close2"><i class="fas fa-arrow-left"></i></span>
+				<p>Ajout photo</p>
+				<div class="upload">
+					<i class="fa-regular fa-image"></i>
+					<input type="file" id="file-input">
+					<button id="ajouter-photo-btn">+ Ajouter une photo</button>.
+					<span class="indic">jpg, png : 4mo max</span>
+				</div>
+				<section id="contact">
+					<form id="photo-form" action="#" method="post">
+						<label for="name">Titre</label>
+						<input type="text" name="name" id="name2">
+						<label for="name">Catégorie</label>
+						<select name="category" id="category2">
+						</select>
+					</form>
+					<div class="ligne"></div>
+					<button id="valider-photo-btn">Valider</button>
+				</section>
 			</div>
 		</div>
-
+		</div>
 		<section id="contact">
 			<h2>Contact</h2>
 			<p>Vous avez un projet ? Discutons-en !</p>

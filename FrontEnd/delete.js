@@ -29,23 +29,23 @@ async function afficherPhotosModal() {
 
             // Positionner l'icône de la corbeille
             deleteIconContainer.style.position = 'absolute';
-            deleteIconContainer.style.top = '3px'; // Placer l'icône à 9 pixels du haut de l'image
-            deleteIconContainer.style.right = '12px'; // Placer l'icône à 9 pixels de la droite de l'image
-            deleteIconContainer.style.width = '17px'; // Définir la largeur de l'encadrement noir
-            deleteIconContainer.style.height = '17px'; // Définir la hauteur de l'encadrement noir
-            deleteIconContainer.style.backgroundColor = 'black'; // Définir la couleur de l'encadrement
+            deleteIconContainer.style.top = '3px';
+            deleteIconContainer.style.right = '12px';
+            deleteIconContainer.style.width = '17px';
+            deleteIconContainer.style.height = '17px';
+            deleteIconContainer.style.backgroundColor = 'black';
             deleteIconContainer.style.borderRadius = '2px';
-            deleteIconContainer.style.display = 'flex'; // Activer le mode flex pour centrer l'icône
-            deleteIconContainer.style.justifyContent = 'center'; // Centrer horizontalement l'icône
-            deleteIconContainer.style.alignItems = 'center'; // Centrer verticalement l'icône
-            deleteIconContainer.style.fontSize = '11px'; // Ajuster la taille de la police de l'icône
+            deleteIconContainer.style.display = 'flex';
+            deleteIconContainer.style.justifyContent = 'center';
+            deleteIconContainer.style.alignItems = 'center';
+            deleteIconContainer.style.fontSize = '11px';
 
             // Créer l'icône de la corbeille
             const deleteIcon = document.createElement('i');
             deleteIcon.classList.add('fa-regular', 'fa-trash-can');
-            deleteIcon.style.width = '56%'; // Ajuster la largeur de l'icône
-            deleteIcon.style.height = '60%'; // Ajuster la hauteur de l'icône
-            deleteIcon.style.color = 'white'; // Définir la couleur de l'icône en blanc
+            deleteIcon.style.width = '56%';
+            deleteIcon.style.height = '60%';
+            deleteIcon.style.color = 'white';
             deleteIcon.style.cursor = 'pointer';
 
             // Ajouter un gestionnaire d'événements de clic à l'icône de la corbeille
@@ -108,6 +108,17 @@ function getTokenFromLocalStorage() {
 
 // Exemple d'utilisation : supprimer la photo avec l'identifiant 2
 deletePhotoById(2);
+
+// Fonction pour initialiser la modal
+function initModal() {
+    // Afficher les photos dans la modal lors de son ouverture
+    const modal = document.getElementById('modal');
+    modal.addEventListener('show.bs.modal', () => {
+        afficherPhotosModal();
+    });
+}
+
+
 
 
 

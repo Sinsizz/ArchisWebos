@@ -71,14 +71,6 @@ async function afficherPhotosModal() {
     });
 }
 
-// Fonction pour ouvrir la modale si l'utilisateur est connecté
-function openModalIfLoggedIn() {
-    if (isLoggedIn()) {
-        document.getElementById('modal').style.display = 'block';
-        afficherPhotosModal(); // Afficher les photos lorsque la modale est ouverte
-    }
-}
-
 // Événement déclenché lorsque le DOM est chargé
 document.addEventListener('DOMContentLoaded', () => {
     const modifierButton = document.getElementById('modifier-button');

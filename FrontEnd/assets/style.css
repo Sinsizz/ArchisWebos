@@ -535,3 +535,62 @@ nav ul li a:hover {
 	text-decoration: none;
 	cursor: pointer;
 }
+
+
+.upload {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	background-color: #E8F1F6;
+	padding-top: 13px;
+	margin-bottom: 6px;
+	margin-right: 100px;
+	margin-left: 100px;
+}
+
+.modal-content .fa-regular {
+	padding-top: 13px;
+	font-size: 65px;
+	color: #B9C5CC;
+}
+
+.upload #ajouter-photo-btn {
+	margin: 0;
+	margin-top: 6px;
+	background-color: #CBD6DC;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	padding-right: 33px;
+	padding-left: 33px;
+	border: none;
+	font-size: 12px;
+	color: #306685;
+}
+
+.upload .indic {
+	margin-bottom: 19px;
+}
+
+.modal-content #contact {
+	width: 420px;
+}
+
+#contact #ajouter-photo-btn {
+	margin-top: 32px;
+	margin-bottom: 55px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	padding-right: 120px;
+	padding-left: 120px;
+	color: #FFFFFF;
+	background-color: #A7A7A7;
+	border: none;
+}
+
+#category2 {
+	height: 50px;
+	font-size: 1.2em;
+	border: none;
+	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+}
