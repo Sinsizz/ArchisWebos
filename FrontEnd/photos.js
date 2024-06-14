@@ -60,6 +60,7 @@ async function afficherphotos() {
 
     // Afficher toutes les photos par défaut
     filtrerPhotosParCategorie(null);
+
 }
 
 // Appeler la fonction pour afficher les photos et les catégories

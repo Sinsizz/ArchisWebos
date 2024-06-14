@@ -1,4 +1,3 @@
-
 // Fonction pour afficher les photos dans la modale
 async function afficherPhotosModal() {
     const apiUrl = "http://localhost:5678/api/works";
@@ -8,57 +7,54 @@ async function afficherPhotosModal() {
         const reponsePhotos = await fetch(apiUrl);
         const photos = await reponsePhotos.json();
 
-        // Créer la galerie dans la modale
+        // Sélectionner la galerie dans la modale
         const gallery = document.querySelector('.modal-content .gallery2');
+        gallery.innerHTML = ''; // Effacer le contenu existant de la galerie
 
-        // Effacer le contenu existant de la galerie
-        gallery.innerHTML = '';
-
-        // Ajouter chaque photo à la galerie avec l'icône de la corbeille
+        // Parcourir toutes les photos
         photos.forEach(photo => {
+            // Créer un conteneur pour chaque photo
             const imgContainer = document.createElement('div');
             imgContainer.classList.add('image-container');
 
+            // Créer l'élément img pour afficher la photo
             const img = document.createElement('img');
-            img.src = photo.imageUrl; // Assurez-vous que votre API renvoie une URL pour chaque photo
-            img.alt = photo.title; // Assurez-vous que votre API renvoie un titre pour chaque photo
+            img.src = photo.imageUrl; // URL de l'image
+            img.alt = photo.title; // Texte alternatif de l'image
 
             // Créer un conteneur pour l'icône de la corbeille
             const deleteIconContainer = document.createElement('div');
             deleteIconContainer.classList.add('delete-icon-container');
 
-            // Positionner l'icône de la corbeille
-            deleteIconContainer.style.position = 'absolute';
-            deleteIconContainer.style.top = '3px';
-            deleteIconContainer.style.right = '12px';
-            deleteIconContainer.style.width = '17px';
-            deleteIconContainer.style.height = '17px';
-            deleteIconContainer.style.backgroundColor = 'black';
-            deleteIconContainer.style.borderRadius = '2px';
-            deleteIconContainer.style.display = 'flex';
-            deleteIconContainer.style.justifyContent = 'center';
-            deleteIconContainer.style.alignItems = 'center';
-            deleteIconContainer.style.fontSize = '11px';
+            // Créer la div noire
+            const blackContainer = document.createElement('div');
+            blackContainer.classList.add('black-container');
 
             // Créer l'icône de la corbeille
             const deleteIcon = document.createElement('i');
-            deleteIcon.classList.add('fa-regular', 'fa-trash-can');
-            deleteIcon.style.width = '56%';
-            deleteIcon.style.height = '60%';
-            deleteIcon.style.color = 'white';
-            deleteIcon.style.cursor = 'pointer';
+            deleteIcon.classList.add('fa', 'fa-trash-can', 'delete-icon');
 
-            // Ajouter un gestionnaire d'événements de clic à l'icône de la corbeille
+            // Ajouter l'icône de la corbeille à la div noire
+            blackContainer.appendChild(deleteIcon);
+
+            // Ajouter la div noire à son conteneur
+            deleteIconContainer.appendChild(blackContainer);
+
+
+
+            // Ajouter un gestionnaire d'événements pour supprimer la photo au clic sur l'icône de la corbeille
             deleteIcon.addEventListener('click', async () => {
                 await deletePhotoById(photo.id); // Supprimer la photo avec l'ID correspondant
                 // Rafraîchir la galerie après la suppression de la photo
                 afficherPhotosModal();
+                afficherphotos();
+                hideCategoryButtons();
             });
 
             // Ajouter l'icône de la corbeille au conteneur
             deleteIconContainer.appendChild(deleteIcon);
 
-            // Ajouter l'image et le conteneur de l'icône de la corbeille au conteneur principal
+            // Ajouter l'image et l'icône de la corbeille au conteneur principal
             imgContainer.appendChild(img);
             imgContainer.appendChild(deleteIconContainer);
 
@@ -68,7 +64,6 @@ async function afficherPhotosModal() {
     } catch (error) {
         console.error('Error fetching photos:', error);
     }
-
 }
 
 // Fonction pour supprimer une photo par son identifiant
@@ -76,12 +71,14 @@ async function deletePhotoById(photoId) {
     const apiUrl = `http://localhost:5678/api/works/${photoId}`;
 
     try {
+        // Récupérer le token d'authentification depuis le local storage
         const token = getTokenFromLocalStorage();
         if (!token) {
             console.error('Token not found. User not authenticated.');
             return;
         }
 
+        // Envoyer une requête DELETE à l'API pour supprimer la photo avec le token d'authentification
         const response = await fetch(apiUrl, {
             method: 'DELETE',
             headers: {
@@ -90,6 +87,7 @@ async function deletePhotoById(photoId) {
             }
         });
 
+        // Vérifier si la suppression s'est effectuée avec succès
         if (response.ok) {
             console.log(`Photo with id ${photoId} deleted successfully.`);
         } else {
@@ -98,32 +96,12 @@ async function deletePhotoById(photoId) {
     } catch (error) {
         console.error('Error deleting photo:', error);
     }
-
 }
 
 // Fonction pour récupérer le token depuis le local storage
 function getTokenFromLocalStorage() {
     return localStorage.getItem('token');
 }
-
-// Exemple d'utilisation : supprimer la photo avec l'identifiant 2
-deletePhotoById(2);
-
-// Fonction pour initialiser la modal
-function initModal() {
-    // Afficher les photos dans la modal lors de son ouverture
-    const modal = document.getElementById('modal');
-    modal.addEventListener('show.bs.modal', () => {
-        afficherPhotosModal();
-    });
-}
-
-
-
-
-
-
-
 
 
 

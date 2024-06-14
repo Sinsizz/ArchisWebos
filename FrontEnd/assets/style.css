@@ -237,6 +237,8 @@ li:hover {
 }
 
 #contact {
+	display: flex;
+	flex-direction: column;
 	width: 50%;
 	margin: auto;
 }
@@ -495,15 +497,11 @@ nav ul li a:hover {
 /* Style pour la ligne en dessous des images */
 .modal-content .ligne {
 	width: 430px;
-	/* Largeur de la ligne */
 	height: 1px;
-	/* Épaisseur de la ligne */
 	background-color: #B3B3B3;
-	/* Couleur de la ligne */
 	margin: 0 auto;
-	/* Centrer horizontalement la ligne */
 	border: 1px;
-	margin-top: 67px;
+	margin-top: 47px;
 }
 
 #ajouter-photo-btn {
@@ -593,4 +591,39 @@ nav ul li a:hover {
 	font-size: 1.2em;
 	border: none;
 	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+}
+
+
+
+.black-container {
+	position: absolute;
+	top: 3px;
+	right: 12px;
+	width: 18px;
+	height: 18px;
+	background-color: black;
+
+	z-index: 1;
+
+}
+
+
+.delete-icon {
+	top: 6px;
+	right: 16px;
+	font-size: 12px;
+	color: white;
+	cursor: pointer;
+	position: absolute;
+	z-index: 2;
+}
+
+#valider-photo-btn {
+	margin-top: 30px;
+	width: 150px;
+	height: 30px;
+	margin-left: 135px;
+	background-color: #A7A7A7;
+	border-color: #A7A7A7;
+	color: white;
 }
