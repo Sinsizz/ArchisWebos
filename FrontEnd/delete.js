@@ -47,7 +47,7 @@ async function afficherPhotosModal() {
                 await deletePhotoById(photo.id); // Supprimer la photo avec l'ID correspondant
                 // Rafraîchir la galerie après la suppression de la photo
                 afficherPhotosModal();
-                afficherphotos();
+                afficherphotos()
                 hideCategoryButtons();
             });
 

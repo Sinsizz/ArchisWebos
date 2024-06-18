@@ -3,30 +3,7 @@ async function afficherphotos() {
     const reponsePhotos = await fetch("http://localhost:5678/api/works");
     const photos = await reponsePhotos.json();
 
-    // Récupérer les catégories depuis l'API
-    const reponseCategories = await fetch("http://localhost:5678/api/categories");
-    const categories = await reponseCategories.json();
-
     const gallery = document.querySelector('#portfolio .gallery');
-    const categoriesContainer = document.createElement('div');
-    categoriesContainer.classList.add('categories');
-
-    // Créer un bouton "Tous" pour afficher toutes les photos
-    const tousButton = document.createElement('button');
-    tousButton.textContent = "Tous";
-    tousButton.addEventListener('click', () => filtrerPhotosParCategorie(null));
-    categoriesContainer.appendChild(tousButton);
-
-    // Créer un bouton pour chaque catégorie
-    categories.forEach(category => {
-        const button = document.createElement('button');
-        button.textContent = category.name;
-        button.addEventListener('click', () => filtrerPhotosParCategorie(category.id));
-        categoriesContainer.appendChild(button);
-    });
-
-    // Ajouter les boutons des catégories juste au-dessus de la galerie
-    gallery.insertAdjacentElement('beforebegin', categoriesContainer);
 
     // Masquer les boutons de catégorie si l'utilisateur est connecté
     if (isLoggedIn()) {
@@ -60,7 +37,6 @@ async function afficherphotos() {
 
     // Afficher toutes les photos par défaut
     filtrerPhotosParCategorie(null);
-
 }
 
 // Appeler la fonction pour afficher les photos et les catégories

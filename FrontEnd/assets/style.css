@@ -553,7 +553,7 @@ nav ul li a:hover {
 	color: #B9C5CC;
 }
 
-.upload #ajouter-photo-btn {
+.upload #ajouter-photo-btn2 {
 	margin: 0;
 	margin-top: 6px;
 	background-color: #CBD6DC;
@@ -618,12 +618,22 @@ nav ul li a:hover {
 	z-index: 2;
 }
 
-#valider-photo-btn {
+#valider-photo-btn:disabled {
 	margin-top: 30px;
 	width: 150px;
 	height: 30px;
 	margin-left: 135px;
 	background-color: #A7A7A7;
 	border-color: #A7A7A7;
+	color: white;
+}
+
+#valider-photo-btn:enabled {
+	margin-top: 30px;
+	width: 150px;
+	height: 30px;
+	margin-left: 135px;
+	background-color: #1D6154;
+	border-color: #1D6154;
 	color: white;
 }

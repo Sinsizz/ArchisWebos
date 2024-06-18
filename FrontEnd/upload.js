@@ -34,37 +34,6 @@ async function populateCategoryDropdown() {
     });
 }
 
-// Fonction pour afficher les photos dans la div "upload" et récupérer l'URL de l'image
-function displaySelectedPhotos() {
-    const fileInput = document.getElementById('file-input');
-    const uploadDiv = document.querySelector('.upload');
-
-    if (!fileInput || !uploadDiv) return;
-
-    fileInput.addEventListener('change', () => {
-        const file = fileInput.files[0];
-        if (!file) return;
-
-        // Récupérer l'URL de l'image sélectionnée
-        const imgUrl = URL.createObjectURL(file);
-        console.log('URL de l\'image sélectionnée:', imgUrl);
-
-        // Afficher l'image sélectionnée
-        uploadDiv.innerHTML = '';
-
-        const imgElement = document.createElement('img');
-        imgElement.src = imgUrl;
-        imgElement.alt = 'Photo sélectionnée';
-        imgElement.style.width = '100%';
-        imgElement.style.height = 'auto';
-
-        uploadDiv.appendChild(imgElement);
-    });
-}
-
-// Sauvegarder le contenu initial de la zone de téléchargement au chargement de la page
-let initialUploadContent;
-
 document.addEventListener('DOMContentLoaded', () => {
     const uploadDiv = document.querySelector('.upload');
     if (uploadDiv) {
@@ -72,15 +41,6 @@ document.addEventListener('DOMContentLoaded', () => {
         initialUploadContent = uploadDiv.innerHTML;
     }
 });
-
-// Fonction pour réinitialiser la zone de téléchargement avec son contenu initial
-function resetUploadDiv() {
-    const uploadDiv = document.querySelector('.upload');
-    if (uploadDiv && initialUploadContent) {
-        // Restaurer le contenu initial
-        uploadDiv.innerHTML = initialUploadContent;
-    }
-}
 
 // Fonction pour envoyer les données du formulaire à l'API
 async function sendFormData(formData) {
@@ -117,17 +77,6 @@ async function sendFormData(formData) {
 
         // Ajouter la nouvelle photo à la galerie
         addNewPhotoToGallery(result.imageUrl, result.title);
-
-        // Réinitialiser la zone de téléchargement
-        resetUploadDiv();
-
-        // Réinitialiser formData après l'envoi
-        formData = null;
-
-        // Réinitialiser les champs du formulaire
-        document.getElementById('file-input').value = '';
-        document.getElementById('name2').value = '';
-        document.getElementById('category2').selectedIndex = 0;
 
     } catch (error) {
         console.error('Erreur lors de l\'envoi du formulaire à l\'API :', error.message);
@@ -178,18 +127,21 @@ function addNewPhotoToGallery(imgUrl, imgTitle) {
     // Appeler afficherPhotosModal après l'ajout de la nouvelle photo
     afficherPhotosModal();
 }
-// Événement déclenché lorsque le DOM est chargé
 document.addEventListener('DOMContentLoaded', async () => {
     console.log('DOM chargé');
     populateCategoryDropdown();
-    displaySelectedPhotos();
-
-    let formData = null; // Initialiser formData à null
 
     const fileInput = document.getElementById('file-input');
     const titleInput = document.getElementById('name2');
     const categoryInput = document.getElementById('category2');
     const validerBtn = document.getElementById('valider-photo-btn');
+    const uploadDiv = document.querySelector('.upload');
+
+    let formData; // Déclarer formData ici pour qu'il soit accessible dans le scope
+
+    // Mettre à jour le bouton de validation au chargement du DOM
+    updateSubmitButtonState();
+
 
     // Fonction pour créer FormData avec les données du formulaire
     function createFormData() {
@@ -219,56 +171,64 @@ document.addEventListener('DOMContentLoaded', async () => {
         return formData;
     }
 
-    // Événement déclenché lors de la saisie du titre
-    if (titleInput) {
-        titleInput.addEventListener('input', () => {
-            // Créer le FormData avec les données du formulaire
-            formData = createFormData();
-        });
-    }
+    // Fonction pour mettre à jour le contenu de la div d'aperçu avec l'image sélectionnée
+    function updatePreviewImage() {
+        const file = fileInput.files[0];
+        if (!file) return;
 
-    // Événement déclenché lors de la sélection de la catégorie
-    if (categoryInput) {
-        categoryInput.addEventListener('change', () => {
-            // Créer le FormData avec les données du formulaire
-            formData = createFormData();
-        });
+        const imgUrl = URL.createObjectURL(file);
+        if (uploadDiv) {
+            uploadDiv.innerHTML = '';
+
+            const imgElement = document.createElement('img');
+            imgElement.src = imgUrl;
+            imgElement.alt = 'Photo sélectionnée';
+            imgElement.style.width = '100%';
+            imgElement.style.height = 'auto';
+
+            uploadDiv.appendChild(imgElement);
+        }
     }
 
     // Événement déclenché lors de la sélection d'une image
     if (fileInput) {
         fileInput.addEventListener('change', () => {
-            const file = fileInput.files[0];
-            if (!file) return;
-
-            // Récupérer l'URL de l'image sélectionnée
-            const imgUrl = URL.createObjectURL(file);
-            console.log('URL de l\'image sélectionnée:', imgUrl);
-
-            // Afficher l'image sélectionnée
-            const uploadDiv = document.querySelector('.upload');
-            if (uploadDiv) {
-                uploadDiv.innerHTML = '';
-
-                const imgElement = document.createElement('img');
-                imgElement.src = imgUrl;
-                imgElement.alt = 'Photo sélectionnée';
-                imgElement.style.width = '100%';
-                imgElement.style.height = 'auto';
-
-                uploadDiv.appendChild(imgElement);
-            }
-
-            // Créer le FormData avec les données du formulaire
-            formData = createFormData();
+            // Mettre à jour l'aperçu de l'image
+            updatePreviewImage();
         });
     }
+
+    function updateSubmitButtonState() {
+        if (checkFormValidity()) {
+            validerBtn.removeAttribute('disabled');
+        } else {
+            validerBtn.setAttribute('disabled', 'disabled');
+        }
+    }
+
+
+    // Vérifier si tous les champs sont remplis
+    function checkFormValidity() {
+        const title = titleInput.value.trim();
+        const category = categoryInput.value.trim();
+        const file = fileInput.files[0];
+
+        return title !== '' && category !== '' && file;
+    }
+
+    // Événements pour mettre à jour l'état du bouton de validation
+    titleInput.addEventListener('input', updateSubmitButtonState);
+    categoryInput.addEventListener('input', updateSubmitButtonState);
+    fileInput.addEventListener('change', updateSubmitButtonState);
 
     // Événement déclenché lors du clic sur le bouton "Valider"
     if (validerBtn) {
         validerBtn.addEventListener('click', async (event) => {
             event.preventDefault();
             console.log('Bouton "Valider" cliqué');
+
+            // Mettre à jour le FormData avec les données du formulaire
+            formData = createFormData();
 
             // Vérifier si formData est défini
             if (!formData) {
@@ -279,6 +239,42 @@ document.addEventListener('DOMContentLoaded', async () => {
             try {
                 await sendFormData(formData);
                 console.log('La nouvelle œuvre a été envoyée avec succès.');
+
+                // Réinitialiser le contenu de uploadDiv pour réafficher l'icône, le bouton et le message indicatif
+                if (uploadDiv) {
+                    uploadDiv.innerHTML = ''; // Effacer l'image sélectionnée
+
+                    // Réafficher l'icône et le bouton "Ajouter une photo"
+                    const iconElement = document.createElement('i');
+                    iconElement.className = 'fa-regular fa-image';
+                    uploadDiv.appendChild(iconElement);
+
+                    // Réafficher le champ d'entrée de fichier
+                    uploadDiv.appendChild(fileInput);
+
+                    const addButton = document.createElement('button');
+                    addButton.id = 'ajouter-photo-btn2';
+                    addButton.textContent = '+ Ajouter une photo';
+                    addButton.addEventListener('click', () => {
+                        fileInput.click(); // Cliquer sur le champ de fichier lors du clic sur le bouton
+                    });
+                    uploadDiv.appendChild(addButton);
+
+                    // Réafficher le message indicatif
+                    const indicSpan = document.createElement('span');
+                    indicSpan.className = 'indic';
+                    indicSpan.textContent = 'jpg, png : 4mo max';
+                    uploadDiv.appendChild(indicSpan);
+                }
+
+                // Réinitialiser les champs de formulaire
+                titleInput.value = ''; // Réinitialiser le titre
+                categoryInput.value = ''; // Réinitialiser la catégorie
+                formData = null; // Réinitialiser formData
+
+                // Désactiver à nouveau le bouton de validation
+                validerBtn.setAttribute('disabled', 'disabled');
+
             } catch (error) {
                 console.error('Erreur lors de l\'envoi de la nouvelle œuvre :', error.message);
             }
@@ -287,6 +283,20 @@ document.addEventListener('DOMContentLoaded', async () => {
         console.error('Bouton "valider-photo-btn" non trouvé');
     }
 });
+
+document.addEventListener('DOMContentLoaded', function () {
+    var addButton = document.getElementById('ajouter-photo-btn2');
+    var fileInput = document.getElementById('file-input');
+
+    addButton.addEventListener('click', function () {
+        fileInput.click(); // Déclenche le clic sur le champ de sélection de fichier
+    });
+});
+
+
+
+
+
 
 
 
