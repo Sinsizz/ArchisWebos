@@ -332,11 +332,11 @@ button:hover {
 }
 
 .categories {
-	display: flex;
-	justify-content: center;
+	text-align: center;
 	gap: 5px;
 	margin-bottom: 15px;
 	margin-top: 0;
+	margin-right: 10px;
 }
 
 footer nav ul {
@@ -458,43 +458,28 @@ nav ul li a:hover {
 	cursor: pointer;
 }
 
-/* Style pour les images dans la modale */
 .modal-content img {
 	max-width: 77px;
-	/* Limiter la largeur des images à 100% de la largeur de la modale */
 	height: auto;
-	/* Hauteur automatique pour conserver les proportions */
 	margin-right: 9px;
-	/* Espacement horizontal entre les images */
-	margin-bottom: 20px;
-	/* Espacement vertical entre les images */
 }
 
-/* Paragraphe à l'intérieur de la modale */
+
 .modal-content p {
 	text-align: center;
-	/* Centrer horizontalement */
 	font-size: 26px;
-	/* Taille de la police */
 	margin-top: 60px;
 	margin-bottom: 34px;
 }
 
-/* Style pour la galerie d'images */
 .modal-content .gallery2 {
 	display: flex;
-	/* Utiliser un conteneur flex pour aligner les éléments */
 	flex-wrap: wrap;
-	/* Permettre le retour à la ligne des éléments */
 	align-items: center;
-	/* Centrer les éléments verticalement */
 	padding-left: 102px;
-	/* Padding à gauche des images */
 	padding-right: 98px;
-	/* Padding à droite des images */
 }
 
-/* Style pour la ligne en dessous des images */
 .modal-content .ligne {
 	width: 430px;
 	height: 1px;
@@ -541,10 +526,13 @@ nav ul li a:hover {
 	align-items: center;
 	flex-direction: column;
 	background-color: #E8F1F6;
-	padding-top: 13px;
 	margin-bottom: 6px;
 	margin-right: 100px;
 	margin-left: 100px;
+}
+
+.upload img {
+	max-width: 129px;
 }
 
 .modal-content .fa-regular {
